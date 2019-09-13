@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201909122338225_Son2.Designer.cs">
       <DependentUpon>201909122338225_Son2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909131839170_Deneme2.cs" />
+    <Compile Include="Migrations\201909131839170_Deneme2.Designer.cs">
+      <DependentUpon>201909131839170_Deneme2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909122338225_Son2.resx">
       <DependentUpon>201909122338225_Son2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909131839170_Deneme2.resx">
+      <DependentUpon>201909131839170_Deneme2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

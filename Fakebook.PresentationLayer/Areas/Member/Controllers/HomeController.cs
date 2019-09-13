@@ -23,6 +23,7 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
             foreach(Post p in ls)
             {
                 PostVM postVM = new PostVM();
+                postVM.PostID = p.ID;
                 postVM.OwnerImage = profileImageBLL.GetProfileImageByUserID(p.User.ID).Image.Base64;
                 postVM.OwnerName = p.User.FirstName + " " + p.User.LastName;
                 postVM.PostDate = p.PostDate;
@@ -32,6 +33,7 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
                 postVM.CommentsCount = p.Comments.Count;
                 list.Add(postVM);
             }
+
             return View(list);
         }
 
@@ -47,16 +49,15 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostLiked(Guid id)
+        public void PostLike(Guid id)
         {
-
-            return View();
+            likeBLL.AddLikeForPost(id);
         }
 
         [HttpPost]
-        public ActionResult CommentLiked(Guid id)
+        public void PostUnlike(Guid id)
         {
-            return View();
+            likeBLL.RemoveLikeForPost(id);
         }
     }
 }

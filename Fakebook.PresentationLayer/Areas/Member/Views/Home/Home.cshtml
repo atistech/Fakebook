@@ -36,23 +36,24 @@
             </div>
             <div class="row p-2 text-center deneme">
                 <div class="col-sm-4 col-lg-4">
-                    <p class="alt-buttons" id="like">
+                    <button class="alt-buttons like w-100" style="border: none;background: none;outline:0px !important;">
                         <i class="fa fa-thumbs-up" id="like-icon"></i>
                         <span id="like-text">Like</span>
-                    </p>
+                        <p id="@post.PostID" style="display: none;"></p>
+                    </button>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <p class="alt-buttons">
+                    <button class="alt-buttons commentClick w-100" style="border: none;background: none;outline:0px !important;">
                         <i class="fa fa-comment"></i> Comment
-                    </p>
+                    </button>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <p class="alt-buttons">
+                    <button class="alt-buttons w-100" style="border: none;background: none;outline:0px !important;">
                         <i class="fa fa-share-square"></i> Share
-                    </p>
+                    </button>
                 </div>
             </div>
-            <div class="row p-1">
+            <div class="row p-1 write-comment" style="display: none;">
                 <div class="col-sm-2 pr-0">
                     <img class="comment_profile" src="@post.OwnerImage">
                 </div>
@@ -72,20 +73,41 @@
             $(this).css("cursor", "pointer");
         });
         var count = 0;
-        $("#like").click(function () {
+        $(".commentClick").click(function () {
             $('#carteSoudCtrl')[0].play();
             if (count == 0) {
-                $("#like-text").css("color", "blue");
-                $("#like-text").html("Liked");
-                $("#like-icon").css("color", "blue");
+                $('.write-comment').css("display", "");
                 count++;
             }
             else if (count == 1) {
-                $("#like-text").css("color", "black");
-                $("#like-text").html("Like");
-                $("#like-icon").css("color", "black");
+                $('.write-comment').css("display", "none");
                 count = 0;
             }
         });
+        $(".like").click(function () {
+            $('#carteSoudCtrl')[0].play();
+            if (count == 0) {
+                $(this).children("#like-text").css("color", "blue");
+                $(this).children("#like-text").html("Liked");
+                $(this).children("#like-icon").css("color", "blue");
+                count++;
+                like($(this).children("p").attr('id'));
+            }
+            else if (count == 1) {
+                $(this).children("#like-text").css("color", "black");
+                $(this).children("#like-text").html("Like");
+                $(this).children("#like-icon").css("color", "black");
+                count = 0;
+                unlike($(this).children("p").attr('id'));
+            }
+        });
+        function like(param) {
+            var url = '@Url.Action("PostLike", "Home")';
+            $.post(url, { id: param });
+        };
+        function unlike(param) {
+            var url = '@Url.Action("PostUnlike", "Home")';
+            $.post(url, { id: param });
+        };
     </script>
 }

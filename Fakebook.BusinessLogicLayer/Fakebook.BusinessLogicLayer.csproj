@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\BaseBusinessLogic.cs" />
+    <Compile Include="Concrete\CommentBLL.cs" />
+    <Compile Include="Concrete\CoverImageBLL.cs" />
     <Compile Include="Concrete\ImageBLL.cs" />
     <Compile Include="Concrete\LikeBLL.cs" />
     <Compile Include="Concrete\PostBLL.cs" />

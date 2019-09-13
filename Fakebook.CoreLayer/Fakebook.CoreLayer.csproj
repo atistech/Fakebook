@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicLayer\ICoreBusinessLogic.cs" />
     <Compile Include="DataAccessLayer\ICoreDataAccess.cs" />
     <Compile Include="EntitiesLayer\CoreEntity.cs" />
     <Compile Include="EntitiesLayer\Enum\Status.cs" />

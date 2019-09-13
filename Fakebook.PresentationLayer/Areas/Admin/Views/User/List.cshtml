@@ -20,7 +20,7 @@
         @foreach (var post in Model)
         {
             <tr>
-                <td><img src="@post.ProfileImage" /></td>
+                <td><img src="@post.ProfileImage" height="100" width="100"/></td>
                 <td>@post.FirstName</td>
                 <td>@post.LastName</td>
                 <td>@post.Email</td>
@@ -34,7 +34,7 @@
                     </a>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger delete" value="">
+                    <button type="button" class="btn btn-danger delete" value="@post.ID">
                         <span class="fa fa-trash">&nbsp;Delete</span>
                     </button>
                 </td>
@@ -48,7 +48,7 @@
             $(this).click(function () {
                 var x = confirm("Are you sure!!");
                 if (x) {
-                    $.get('/Admin/User/Delete/' + $(this).val());
+                    $.post('@Url.Action("Delete", "User")', { id: $(this).val() });
                 }
             });
         });

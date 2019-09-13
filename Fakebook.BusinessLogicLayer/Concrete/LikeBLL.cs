@@ -1,4 +1,6 @@
-﻿using Fakebook.DataAccessLayer.Concrete;
+﻿using Fakebook.CoreLayer.EntitiesLayer.Enum;
+using Fakebook.DataAccessLayer.Concrete;
+using Fakebook.EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +17,20 @@ namespace Fakebook.BusinessLogicLayer.Concrete
             _likeDAL = new LikeDAL();
 
         public int LikesCountByPostID(Guid id) => 
-            _likeDAL.GetDefault(x => x.PostID == id).Count;
+            _likeDAL.GetDefault(x => x.PostID == id 
+                && x.Status != Status.Deleted).Count;
 
         public int LikesCountCommentID(Guid id) =>
             _likeDAL.GetDefault(x => x.CommentID == id).Count;
 
-        public void AddLikeForPost(Guid id) =>
-            _likeDAL.Add(
-                _likeDAL.GetByDefault(x => x.PostID == id));
+        public void AddLikeForPost(Guid id)
+        {
+            Like like = new Like();
+            like.ID = Guid.NewGuid();
+            like.PostID = id;
+            _likeDAL.Add(like);
+        }
+            
 
         public void AddLikeForComment(Guid id) =>
             _likeDAL.Add(

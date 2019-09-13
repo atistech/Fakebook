@@ -64,7 +64,7 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
             return RedirectToAction("List");
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Delete(Guid id)
         {
             userBLL.DeleteUser(id);

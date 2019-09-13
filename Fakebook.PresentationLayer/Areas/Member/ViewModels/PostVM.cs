@@ -7,6 +7,7 @@ namespace Fakebook.PresentationLayer.Areas.Member.ViewModels
 {
     public class PostVM
     {
+        public Guid PostID { get; set; }
         public string OwnerImage { get; set; }
         public string OwnerName { get; set; }
         public DateTime PostDate { get; set; }
