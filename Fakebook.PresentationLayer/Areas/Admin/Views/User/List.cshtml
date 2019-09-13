@@ -1,0 +1,56 @@
+﻿@{
+    Layout = Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model List<Fakebook.PresentationLayer.Areas.Admin.ViewModels.UserVM>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Profile Image</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td><img src="@post.ProfileImage" /></td>
+                <td>@post.FirstName</td>
+                <td>@post.LastName</td>
+                <td>@post.Email</td>
+                <td>@post.Password</td>
+                <td>@post.Role</td>
+                <td>
+                    <a href="/Admin/User/Edit/@post.ID">
+                        <button type="button" class="btn btn-primary">
+                            <span class="fa fa-edit">&nbsp;Edit</span>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger delete" value="">
+                        <span class="fa fa-trash">&nbsp;Delete</span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts {
+<script>
+        $(".delete").each(function () {
+            $(this).click(function () {
+                var x = confirm("Are you sure!!");
+                if (x) {
+                    $.get('/Admin/User/Delete/' + $(this).val());
+                }
+            });
+        });
+</script>
+}

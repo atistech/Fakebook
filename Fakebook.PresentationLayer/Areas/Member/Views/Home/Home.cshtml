@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+}
+@model List<PostVM>
+@foreach (var post in Model)
+{
+    <div id="post" class="bg-light w-100">
+        <div class="container p-3">
+            <div class="row">
+                <div class="col-sm-2 pr-0">
+                    <img class="small_profile" src="@post.OwnerImage">
+                </div>
+                <div class="col-sm-10 pl-0 p-2">
+                    <p class="profile_name font-weight-bold">@post.OwnerName</p>
+                    <p class="post_date">@post.PostDate · <i class="fa fa-globe-americas"></i></p>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-sm-12">
+                    <p class="post-content-text">
+                        @post.TextContent
+                    </p>
+                    <img class="post_content_image" src="@post.ImageContent">
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-lg-3">
+                    <p class="alt-buttons">@post.LikesCount likes</p>
+                </div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <p class="alt-buttons">@post.CommentsCount comments</p>
+                </div>
+            </div>
+            <div class="row p-2 text-center deneme">
+                <div class="col-sm-4 col-lg-4">
+                    <p class="alt-buttons" id="like">
+                        <i class="fa fa-thumbs-up" id="like-icon"></i>
+                        <span id="like-text">Like</span>
+                    </p>
+                </div>
+                <div class="col-sm-4 col-lg-4">
+                    <p class="alt-buttons">
+                        <i class="fa fa-comment"></i> Comment
+                    </p>
+                </div>
+                <div class="col-sm-4 col-lg-4">
+                    <p class="alt-buttons">
+                        <i class="fa fa-share-square"></i> Share
+                    </p>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-sm-2 pr-0">
+                    <img class="comment_profile" src="@post.OwnerImage">
+                </div>
+                <div class="col-sm-10 pl-0 p-2">
+                    <input class="form-control comment" type="text" placeholder="Write your comment...">
+                </div>
+            </div>
+        </div>
+    </div><br>
+}
+<audio id="carteSoudCtrl">
+    <source src="~/Sounds/like.mp3" type="audio/mpeg">
+</audio>
+@section scripts {
+    <script>
+        $(".alt-buttons").hover(function () {
+            $(this).css("cursor", "pointer");
+        });
+        var count = 0;
+        $("#like").click(function () {
+            $('#carteSoudCtrl')[0].play();
+            if (count == 0) {
+                $("#like-text").css("color", "blue");
+                $("#like-text").html("Liked");
+                $("#like-icon").css("color", "blue");
+                count++;
+            }
+            else if (count == 1) {
+                $("#like-text").css("color", "black");
+                $("#like-text").html("Like");
+                $("#like-icon").css("color", "black");
+                count = 0;
+            }
+        });
+    </script>
+}

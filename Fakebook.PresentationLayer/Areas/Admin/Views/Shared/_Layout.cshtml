@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fakebook News Feed</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row p-3 bg-dark">
+            <div class="col-12 text-center">
+                <span class="fa fa-lg fa-facebook-square text-light">&nbsp;Fakebook Admin Panel</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 bg-dark" style="height:100vh;">
+                <nav class="nav flex-column">
+                    <a class="nav-link text-light" href="@Url.Action("List","User")">Users</a>
+                    <a class="nav-link text-light" href="@Url.Action("List","Post")">Posts</a>
+                    <a class="nav-link text-light" href="@Url.Action("List","Image")">Images</a>
+                </nav>
+            </div>
+            <div class="col-10">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/js")
+    @RenderSection("scripts", false)
+</body>
+
+</html>

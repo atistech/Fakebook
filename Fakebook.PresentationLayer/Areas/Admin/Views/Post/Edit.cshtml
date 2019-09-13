@@ -1,0 +1,27 @@
+﻿@model Fakebook.PresentationLayer.Areas.Admin.ViewModels.PostVM
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<br />
+<form method="post" action="@Url.Action("Edit", "Post")">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Image Content</label>
+        <div class="col-sm-5">
+            <img src="@Model.ImageContent" width="100" height="100">
+            <input type="file" class="form-control-file" name="ImageContent">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Text Content</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="TextContent" value="@Model.TextContent">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-7">
+            <input type="submit" value="Save" class="btn btn-primary w-100" />
+        </div>
+    </div>
+</form>
+
