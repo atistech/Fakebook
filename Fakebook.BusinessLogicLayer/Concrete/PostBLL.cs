@@ -9,37 +9,43 @@ namespace Fakebook.BusinessLogicLayer.Concrete
 {
     public class PostBLL
     {
-        private PostDAL postDAL;
+        private PostDAL _postDAL;
+        private UserDAL _userDAL;
 
         public PostBLL()
         {
-            postDAL = new PostDAL();
+            _postDAL = new PostDAL();
+            _userDAL = new UserDAL();
         }
 
         public List<Post> getAllPostsByUserID(Guid id)
         {
-            List<Post> ls = postDAL.GetDefault(x => x.User.ID == id);
+            List<Post> ls = _postDAL.GetDefault(x => x.User.ID == id);
+            foreach(User u in _userDAL.GetByID(id).Users)
+            {
+                ls.AddRange(_postDAL.GetDefault(x => x.User.ID == u.ID));
+            }
             return ls;
         }
         
         public List<Post> GetAllPosts()
         {
-            return postDAL.GetActive();
+            return _postDAL.GetActive();
         }
 
         public Post GetById(Guid id)
         {
-            return postDAL.GetByID(id);
+            return _postDAL.GetByID(id);
         }
 
         public void Update(Post p)
         {
-            postDAL.Update(p);
+            _postDAL.Update(p);
         }
 
         public void DeletePost(Guid id)
         {
-            postDAL.Remove(postDAL.GetByID(id));
+            _postDAL.Remove(_postDAL.GetByID(id));
         }
     }
 }

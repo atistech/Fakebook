@@ -33,21 +33,29 @@ namespace Fakebook.DataAccessLayer.Migrations
             p.TextContent = "Lorem ipsum dolor sit amet";
             p.ContentImage = i2;
 
-            User u = new User();
-            u.ID = Guid.NewGuid();
-            u.FirstName = "Atakan";
-            u.LastName = "Senturk";
-            u.Images.Add(i1);
-            u.Images.Add(i2);
-            u.Posts.Add(p);
+            Post p2 = new Post();
+            p2.ID = Guid.NewGuid();
+            p2.PostDate = DateTime.UtcNow;
+            p2.TextContent = "DEnemememeee";
+            p2.ContentImage = i2;
 
             User u2 = new User();
             u2.ID = Guid.NewGuid();
             u2.FirstName = "Filiz";
             u2.LastName = "Senturk";
-            u2.Images.Add(i1);
-            u2.Images.Add(i2);
-            u2.Posts.Add(p);
+            u2.Posts.Add(p2);
+
+            User u = new User();
+            u.ID = Guid.NewGuid();
+            u.FirstName = "Atakan";
+            u.LastName = "Senturk";
+            u.Email = "deneme@deneme.com";
+            u.Password = "deneme";
+            u.Images.Add(i1);
+            u.Images.Add(i2);
+            u.Posts.Add(p);
+            u.Role = Role.Member;
+            u.Users.Add(u2);
 
             ProfileImage pi = new ProfileImage();
             pi.ID = Guid.NewGuid();
@@ -64,6 +72,7 @@ namespace Fakebook.DataAccessLayer.Migrations
             context.Users.Add(u);
             context.Users.Add(u2);
             context.Posts.Add(p);
+            context.Posts.Add(p2);
             context.ProfileImages.Add(pi);
             context.ProfileImages.Add(pi2);
             context.SaveChanges();
