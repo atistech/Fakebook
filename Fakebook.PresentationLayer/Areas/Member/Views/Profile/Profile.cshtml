@@ -1,8 +1,54 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Profile";
     Layout = "~/Areas/Member/Views/Shared/_LayoutProfile.cshtml";
 }
-
-<h2>Profile</h2>
+@Html.Partial("PostWrite")
+@{Html.RenderAction("GetPosts", "Profile");}
+<audio id="carteSoudCtrl">
+    <source src="~/Sounds/like.mp3" type="audio/mpeg">
+</audio>
+@section scripts {
+    <script>
+        $(".alt-buttons").hover(function () {
+            $(this).css("cursor", "pointer");
+        });
+        var count = 0;
+        $(".commentClick").click(function () {
+            $('#carteSoudCtrl')[0].play();
+            if (count == 0) {
+                $('.write-comment').css("display", "");
+                count++;
+            }
+            else if (count == 1) {
+                $('.write-comment').css("display", "none");
+                count = 0;
+            }
+        });
+        $(".like").click(function () {
+            $('#carteSoudCtrl')[0].play();
+            if (count == 0) {
+                $(this).children("#like-text").css("color", "blue");
+                $(this).children("#like-text").html("Liked");
+                $(this).children("#like-icon").css("color", "blue");
+                count++;
+                like($(this).children("p").attr('id'));
+            }
+            else if (count == 1) {
+                $(this).children("#like-text").css("color", "black");
+                $(this).children("#like-text").html("Like");
+                $(this).children("#like-icon").css("color", "black");
+                count = 0;
+                unlike($(this).children("p").attr('id'));
+            }
+        });
+        function like(param) {
+            var url = '@Url.Action("PostLike", "Home")';
+            $.post(url, { id: param });
+        };
+        function unlike(param) {
+            var url = '@Url.Action("PostUnlike", "Home")';
+            $.post(url, { id: param });
+        };
+    </script>
+}
 

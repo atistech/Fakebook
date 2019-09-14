@@ -27,7 +27,12 @@ namespace Fakebook.BusinessLogicLayer.Concrete
             }
             return ls;
         }
-        
+
+        public List<Post> getProfilePostsByUserID(Guid id)
+        {
+            return _postDAL.GetDefault(x => x.User.ID == id);
+        }
+
         public List<Post> GetAllPosts()
         {
             return _postDAL.GetActive();

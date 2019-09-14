@@ -9,77 +9,62 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Facebook_logo_36x36.svg/768px-Facebook_logo_36x36.svg.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Fakebook
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav mr-auto"></ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Logout","Account",new { area=""})">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Profile","Profile",new { area="Member"})">Profile</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    @Html.Partial("Navbar")
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 col-lg-2"></div>
-            <div class="col-sm-12 col-lg-2">
-                <br />
+            <div class="col-sm-12 col-lg-8">
                 <div class="row">
-                    <img class="nav_profile" id="profile-image">&nbsp;&nbsp;
-                    <span>
-                        <p id="current-user" class="profile_name font-weight-bold"></p>
-                    </span>
-                </div><br />
-                <div class="row">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="fa fa-newspaper-o"></i> News Feed
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Profile","Profile",new { area="Member"})">
-                                <i class="fa fa-edit"></i> Edit Profile
-                            </a>
-                        </li>
-                    </ul>
+                    @Html.Partial("ProfileHeader")
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-5">
+                            <div id="post" class="bg-light p-3">
+                                <i class="fa fa-info-circle"></i> Intro
+                            </div>
+                            @Html.Partial("Photos")
+                        </div>
+                        <div class="col-sm-12 col-lg-7">
+                            @RenderBody()
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-5">
-                <div class="row">
-                    @RenderBody()
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-3"></div>
+            <div class="col-sm-12 col-lg-2"></div>
         </div>
     </div>
     @Scripts.Render("~/Scripts/js")
     <script>
         $(document).ready(function () {
-            var url = '@Url.Action("GetCurrentUser", "Home")';
-            $.get(url, function (data) {
+            var url1 = '@Url.Action("GetCurrentUser", "Home")';
+            var url2 = '@Url.Action("GetPhotos", "Profile")';
+            $.get(url1, function (data) {
                 var json = JSON.parse(data);
                 $("#current-user").html(json.FullName);
                 $("#profile-image").attr("src", json.ProfileImage);
-                $("#profile-image-posting").attr("src", json.ProfileImage);
+                $("#cover-image").css("background-image", "url('"+json.CoverImage+"'");
+            });
+            $.get(url2, function (data) {
+                var json = JSON.parse(data);
+                var count = 0;
+                json.forEach(function (item) {
+                    if (count == 0) {
+                        var img = $('<img />').attr({
+                            'src': item.Base64,
+                            'width': 100,
+                            'width': 100
+                        }).appendTo($('.photos')[0]);
+                        count++;
+                    }
+                    else if (count == 1) {
+                        var img = $('<img />').attr({
+                            'src': item.Base64,
+                            'width': 100,
+                            'width': 100
+                        }).appendTo($('.photos')[1]);
+                        count = 0;
+                    }
+                });
             });
         });
     </script>

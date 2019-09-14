@@ -9,92 +9,17 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Facebook_logo_36x36.svg/768px-Facebook_logo_36x36.svg.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Fakebook
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav mr-auto"></ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Logout","Account",new { area=""})">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Profile","Profile",new { area="Member"})">Profile</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    @Html.Partial("Navbar")
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 col-lg-2"></div>
             <div class="col-sm-12 col-lg-2">
                 <br />
-                <div class="row">
-                    <img class="nav_profile" id="profile-image">&nbsp;&nbsp;
-                    <span>
-                        <p id="current-user" class="profile_name font-weight-bold"></p>
-                    </span>
-                </div><br />
-                <div class="row">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <i class="fa fa-newspaper-o"></i> News Feed
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Profile","Profile",new { area="Member"})">
-                                <i class="fa fa-edit"></i> Edit Profile
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                @Html.Partial("HomeSideBar")
             </div>
             <div class="col-sm-12 col-lg-5">
                 <div class="row">
-                    <div id="post" class="bg-light w-100">
-                        <div class="container p-3">
-                            <div class="row p-1">
-                                <div class="pl-0 p-2 w-100">
-                                    <textarea class="form-control comment" placeholder="What's on your mind?"></textarea>
-                                </div>
-                            </div>
-                            <div class="row p-2 deneme">
-                                <div class="col-sm-6 col-lg-6">
-                                    <button type="button" class="btn">
-                                        <i class="fa fa-plus"></i> Add Image
-                                    </button>
-                                </div>
-                                <div class="col-sm-4 col-lg-4">
-                                    <p class="alt-buttons">
-                                        <select name="Role" class="form-control">
-                                            <option value="None">Friends</option>
-                                            <option value="Admin">Public</option>
-                                            <option value="Member">Only Me</option>
-                                        </select>
-                                    </p>
-                                </div>
-                                <div class="col-sm-2 col-lg-2 pl-0">
-                                    <button type="button" class="btn btn-primary">
-                                        Post
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @Html.Partial("PostWrite")
                     @RenderBody()
                 </div>
             </div>

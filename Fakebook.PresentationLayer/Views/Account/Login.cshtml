@@ -1,20 +1,11 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
+@Html.Partial("LoginNavbar")
     <form action="@Url.Action("Login","Account")" method="post">
         <input type="text" name="Email" placeholder="Email..." required="" />
         <input type="password" name="Password" class="padding" placeholder="Password" required="" />
         <input type="submit" value="submit">
     </form>
-</body>
-</html>

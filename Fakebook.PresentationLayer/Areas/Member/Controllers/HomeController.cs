@@ -15,8 +15,15 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
         UserBLL userBLL = new UserBLL();
         LikeBLL likeBLL = new LikeBLL();
         ProfileImageBLL profileImageBLL = new ProfileImageBLL();
+        CoverImageBLL coverImageBLL = new CoverImageBLL();
         // GET: Member/Home
         public ActionResult Home()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult GetPosts()
         {
             List<PostVM> list = new List<PostVM>();
             List<Post> ls = postBLL.getAllPostsByUserID(new Guid(HttpContext.User.Identity.Name));
@@ -34,7 +41,7 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
                 list.Add(postVM);
             }
 
-            return View(list);
+            return PartialView("PostArea", list);
         }
 
         [HttpGet]
@@ -44,6 +51,7 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
             CurrentUserVM current = new CurrentUserVM();
             current.FullName = u.FirstName + " " + u.LastName;
             current.ProfileImage = profileImageBLL.GetProfileImageByUserID(u.ID).Image.Base64;
+            current.CoverImage = coverImageBLL.GetCoverImageByUserID(u.ID).Image.Base64;
             var json = new JavaScriptSerializer().Serialize(current);
             return Json(json, JsonRequestBehavior.AllowGet);
         }

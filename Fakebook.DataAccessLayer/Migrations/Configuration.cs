@@ -67,6 +67,11 @@ namespace Fakebook.DataAccessLayer.Migrations
             pi2.Image = i2;
             pi2.User = u2;
 
+            CoverImage c1 = new CoverImage();
+            c1.ID = Guid.NewGuid();
+            c1.Image = i2;
+            c1.User = u;
+
             context.Images.Add(i1);
             context.Images.Add(i2);
             context.Users.Add(u);
@@ -75,6 +80,7 @@ namespace Fakebook.DataAccessLayer.Migrations
             context.Posts.Add(p2);
             context.ProfileImages.Add(pi);
             context.ProfileImages.Add(pi2);
+            context.CoverImages.Add(c1);
             context.SaveChanges();
             base.Seed(context);
         }

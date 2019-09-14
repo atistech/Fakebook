@@ -165,6 +165,12 @@
     <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <Content Include="Areas\Member\Views\Profile\Profile.cshtml" />
     <Content Include="Areas\Member\Views\Shared\_LayoutProfile.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\Photos.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\ProfileHeader.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\Navbar.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\PostWrite.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\HomeSideBar.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\PostArea.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -222,6 +228,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
