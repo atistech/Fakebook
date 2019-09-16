@@ -57,17 +57,9 @@
     <Compile Include="Concrete\ProfileImageDAL.cs" />
     <Compile Include="Concrete\UserDAL.cs" />
     <Compile Include="Context\ProjectContext.cs" />
-    <Compile Include="Migrations\201909122233054_Son.cs" />
-    <Compile Include="Migrations\201909122233054_Son.Designer.cs">
-      <DependentUpon>201909122233054_Son.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909122338225_Son2.cs" />
-    <Compile Include="Migrations\201909122338225_Son2.Designer.cs">
-      <DependentUpon>201909122338225_Son2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909131839170_Deneme2.cs" />
-    <Compile Include="Migrations\201909131839170_Deneme2.Designer.cs">
-      <DependentUpon>201909131839170_Deneme2.cs</DependentUpon>
+    <Compile Include="Migrations\201909142142489_September.cs" />
+    <Compile Include="Migrations\201909142142489_September.Designer.cs">
+      <DependentUpon>201909142142489_September.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,14 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909122233054_Son.resx">
-      <DependentUpon>201909122233054_Son.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909122338225_Son2.resx">
-      <DependentUpon>201909122338225_Son2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909131839170_Deneme2.resx">
-      <DependentUpon>201909131839170_Deneme2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909142142489_September.resx">
+      <DependentUpon>201909142142489_September.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

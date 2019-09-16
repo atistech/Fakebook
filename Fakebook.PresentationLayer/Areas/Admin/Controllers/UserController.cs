@@ -17,7 +17,7 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
         public ActionResult List()
         {
             List<UserVM> ls = new List<UserVM>();
-            foreach (User u in userBLL.GetAllUsers())
+            foreach (User u in userBLL.GetAll())
             {
                 UserVM userVM = new UserVM();
                 userVM.ID = u.ID;
@@ -60,14 +60,14 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
             u.Password = userVM.Password;
             u.Role = (Role)Enum.Parse(typeof(Role), userVM.Role);
             //p.Update(pi);
-            userBLL.UpdateUser(u);
+            userBLL.Update(u);
             return RedirectToAction("List");
         }
 
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
-            userBLL.DeleteUser(id);
+            userBLL.Delete(id);
             return RedirectToAction("List");
         }
     }

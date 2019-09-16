@@ -7,13 +7,13 @@ namespace Fakebook.DataAccessLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Son : IMigrationMetadata
+    public sealed partial class September : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Son));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(September));
         
         string IMigrationMetadata.Id
         {
-            get { return "201909122233054_Son"; }
+            get { return "201909142142489_September"; }
         }
         
         string IMigrationMetadata.Source

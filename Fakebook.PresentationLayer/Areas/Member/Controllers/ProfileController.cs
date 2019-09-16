@@ -37,7 +37,7 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
                 postVM.PostDate = p.PostDate;
                 postVM.TextContent = p.TextContent;
                 postVM.ImageContent = p.ContentImage.Base64;
-                postVM.LikesCount = likeBLL.LikesCountByPostID(p.ID);
+                postVM.LikesCount = likeBLL.LikesCount(p.ID);
                 postVM.CommentsCount = p.Comments.Count;
                 list.Add(postVM);
             }

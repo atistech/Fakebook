@@ -3,7 +3,7 @@ namespace Fakebook.DataAccessLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Son : DbMigration
+    public partial class September : DbMigration
     {
         public override void Up()
         {
@@ -38,6 +38,8 @@ namespace Fakebook.DataAccessLayer.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
+                        OwnerID = c.Guid(),
+                        ItemID = c.Guid(),
                         Status = c.Int(),
                         CreatedComputerName = c.String(),
                         CreatedIP = c.String(),

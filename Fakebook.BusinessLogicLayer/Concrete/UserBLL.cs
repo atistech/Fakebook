@@ -1,11 +1,12 @@
-﻿using Fakebook.DataAccessLayer.Concrete;
+﻿using Fakebook.BusinessLogicLayer.Abstract;
+using Fakebook.DataAccessLayer.Concrete;
 using Fakebook.EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
 
 namespace Fakebook.BusinessLogicLayer.Concrete
 {
-    public class UserBLL
+    public class UserBLL : IBusinessLogic<User>
     {
         private UserDAL _userDAL;
 
@@ -29,19 +30,29 @@ namespace Fakebook.BusinessLogicLayer.Concrete
             return _userDAL.GetByID(id);
         }
 
-        public List<User> GetAllUsers()
+        public List<User> GetAll()
         {
             return _userDAL.GetActive();
         }
 
-        public void DeleteUser(Guid id)
+        public User Get(Guid id)
         {
-            _userDAL.Remove(id);
+            return _userDAL.GetByID(id);
         }
 
-        public void UpdateUser(User u)
+        public void Add(User t)
         {
-            _userDAL.Update(u);
+            _userDAL.Add(t);
+        }
+
+        public void Update(User t)
+        {
+            _userDAL.Update(t);
+        }
+
+        public void Delete(Guid id)
+        {
+            _userDAL.Remove(id);
         }
     }
 }

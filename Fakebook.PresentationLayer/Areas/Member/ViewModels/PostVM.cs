@@ -15,5 +15,6 @@ namespace Fakebook.PresentationLayer.Areas.Member.ViewModels
         public string ImageContent { get; set; }
         public int LikesCount { get; set; }
         public int CommentsCount { get; set; }
+        public bool UserLikeStatus { get; set; }
     }
 }

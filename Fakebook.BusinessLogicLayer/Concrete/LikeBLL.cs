@@ -1,47 +1,73 @@
-﻿using Fakebook.CoreLayer.EntitiesLayer.Enum;
+﻿using Fakebook.BusinessLogicLayer.Abstract;
+using Fakebook.CoreLayer.EntitiesLayer.Enum;
 using Fakebook.DataAccessLayer.Concrete;
 using Fakebook.EntitiesLayer.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fakebook.BusinessLogicLayer.Concrete
 {
-    public class LikeBLL
+    public class LikeBLL : IBusinessLogic<Like>
     {
         private LikeDAL _likeDAL;
 
-        public LikeBLL() => 
+        public LikeBLL()
+        {
             _likeDAL = new LikeDAL();
+        }
 
-        public int LikesCountByPostID(Guid id) => 
-            _likeDAL.GetDefault(x => x.PostID == id 
-                && x.Status != Status.Deleted).Count;
+        public int LikesCount(Guid id)
+        {
+            return _likeDAL.GetDefault(x => x.ItemID == id
+&& x.Status != Status.Deleted).Count;
+        }
 
-        public int LikesCountCommentID(Guid id) =>
-            _likeDAL.GetDefault(x => x.CommentID == id).Count;
-
-        public void AddLikeForPost(Guid id)
+        public void Add(Guid OwnerId, Guid ItemId)
         {
             Like like = new Like();
             like.ID = Guid.NewGuid();
-            like.PostID = id;
+            like.OwnerID = OwnerId;
+            like.ItemID = ItemId;
             _likeDAL.Add(like);
         }
-            
 
-        public void AddLikeForComment(Guid id) =>
-            _likeDAL.Add(
-                _likeDAL.GetByDefault(x => x.CommentID == id));
+        public void Remove(Guid ItemId)
+        {
+            _likeDAL.Remove(_likeDAL.GetByDefault(x => x.ItemID == ItemId));
+        }
 
-        public void RemoveLikeForPost(Guid id) =>
-            _likeDAL.Remove(
-                _likeDAL.GetByDefault(x => x.PostID == id));
+        public bool UserLikeStatus(Guid UserId, Guid ItemId)
+        {
+            if (_likeDAL.GetByDefault(x => x.ItemID == ItemId
+                 && x.OwnerID == UserId)!=null)
+                return true;
+            else
+                return false;
+        }
 
-        public void RemoveLikeForComment(Guid id) =>
-            _likeDAL.Remove(
-                _likeDAL.GetByDefault(x => x.CommentID == id));
+        public List<Like> GetAll()
+        {
+            return _likeDAL.GetActive();
+        }
+
+        public Like Get(Guid id)
+        {
+            return _likeDAL.GetByID(id);
+        }
+
+        public void Add(Like t)
+        {
+            _likeDAL.Add(t);
+        }
+
+        public void Update(Like t)
+        {
+            _likeDAL.Update(t);
+        }
+
+        public void Delete(Guid id)
+        {
+            _likeDAL.Remove(Get(id));
+        }
     }
 }

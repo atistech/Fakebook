@@ -2,10 +2,8 @@
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
-
-@Html.Partial("LoginNavbar")
     <form action="@Url.Action("Login","Account")" method="post">
-        <input type="text" name="Email" placeholder="Email..." required="" />
-        <input type="password" name="Password" class="padding" placeholder="Password" required="" />
-        <input type="submit" value="submit">
+        <input style="padding:5px;" type="text" name="Email" placeholder="abc@abc.com" required="" />
+        <input style="padding:5px;" type="password" name="Password" class="padding" placeholder="*****" required="" />
+        <input type="submit" value="Log In" style="padding:5px;color:white;background-color:#385499;border:1px solid white;">
     </form>

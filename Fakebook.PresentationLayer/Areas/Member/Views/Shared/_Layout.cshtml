@@ -32,8 +32,8 @@
             var url = '@Url.Action("GetCurrentUser", "Home")';
             $.get(url, function (data) {
                 var json = JSON.parse(data);
-                $("#current-user").html(json.FullName);
-                $("#profile-image").attr("src", json.ProfileImage);
+                $(".current-user").html(json.FullName);
+                $(".profile-image").attr("src", json.ProfileImage);
                 $("#profile-image-posting").attr("src", json.ProfileImage);
             });
         });

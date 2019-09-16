@@ -16,7 +16,7 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
         public ActionResult List()
         {
             List<PostVM> ls = new List<PostVM>();
-            foreach (Post p in postBLL.GetAllPosts())
+            foreach (Post p in postBLL.GetAll())
             {
                 PostVM postVM = new PostVM();
                 postVM.ID = p.ID;
@@ -30,7 +30,7 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            Post p = postBLL.GetById(id);
+            Post p = postBLL.Get(id);
             PostVM postVM = new PostVM();
             postVM.ID = p.ID;
             postVM.ImageContent = p.ContentImage.Base64;
@@ -41,7 +41,7 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(PostVM postVM)
         {
-            Post p = postBLL.GetById(postVM.ID);
+            Post p = postBLL.Get(postVM.ID);
             p.ContentImage.Base64 = postVM.ImageContent;
             p.TextContent = postVM.TextContent;
             postBLL.Update(p);
@@ -51,7 +51,7 @@ namespace Fakebook.PresentationLayer.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(Guid id)
         {
-            postBLL.DeletePost(id);
+            postBLL.Delete(id);
             return RedirectToAction("List");
         }
     }

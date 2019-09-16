@@ -3,11 +3,30 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*@Styles.Render("~/Content/css")*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Login</title>
     @RenderSection("head", required: false)
 </head>
 <body>
-    @RenderBody()
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #385499;">
+        <a class="navbar-brand" href="#">
+            <img src="https://p.apk4fun.com/f5/98/e1/com.facebook.lite-logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Fakebook
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    @RenderBody()
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
 </body>
 </html>

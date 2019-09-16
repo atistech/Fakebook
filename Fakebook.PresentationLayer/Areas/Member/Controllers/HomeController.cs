@@ -36,8 +36,9 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
                 postVM.PostDate = p.PostDate;
                 postVM.TextContent = p.TextContent;
                 postVM.ImageContent = p.ContentImage.Base64;
-                postVM.LikesCount = likeBLL.LikesCountByPostID(p.ID);
+                postVM.LikesCount = likeBLL.LikesCount(p.ID);
                 postVM.CommentsCount = p.Comments.Count;
+                postVM.UserLikeStatus = likeBLL.UserLikeStatus(Guid.Parse(HttpContext.User.Identity.Name), p.ID);
                 list.Add(postVM);
             }
 
@@ -59,13 +60,21 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
         [HttpPost]
         public void PostLike(Guid id)
         {
-            likeBLL.AddLikeForPost(id);
+            likeBLL.Add(Guid.Parse(HttpContext.User.Identity.Name), id);
         }
 
         [HttpPost]
         public void PostUnlike(Guid id)
         {
-            likeBLL.RemoveLikeForPost(id);
+            likeBLL.Remove(id);
+        }
+
+        [HttpGet]
+        public JsonResult UserLikeStatus(Guid id)
+        {
+            bool result = likeBLL.UserLikeStatus(Guid.Parse(HttpContext.User.Identity.Name), id);
+            var json = new JavaScriptSerializer().Serialize(result);
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
     }
 }

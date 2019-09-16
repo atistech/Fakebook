@@ -2,6 +2,7 @@
     ViewBag.Title = "Home";
     Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
 }
+
 @{Html.RenderAction("GetPosts", "Home");}
 <audio id="carteSoudCtrl">
     <source src="~/Sounds/like.mp3" type="audio/mpeg">
@@ -23,6 +24,7 @@
                 count = 0;
             }
         });
+
         $(".like").click(function () {
             $('#carteSoudCtrl')[0].play();
             if (count == 0) {
