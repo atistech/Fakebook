@@ -9,10 +9,10 @@
     <title>Login</title>
     @RenderSection("head", required: false)
 </head>
-<body>
+<body style="background-color: #E4E6F2;">
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #385499;">
         <a class="navbar-brand" href="#">
-            <img src="https://p.apk4fun.com/f5/98/e1/com.facebook.lite-logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="~/Images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             Fakebook
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,35 @@
             </ul>
         </div>
     </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <br /><br />
+                <img src="~/Images/homepage.png" style="width: 100%; height: 100%;" />
+            </div>
+            <div class="col-sm-6">
+                <br /><br />
+                      <form action="@Url.Action("Register","Account")" method="post">
+                          <div class="row">
+                              <input style="padding:5px;" type="text" name="FirstName" placeholder="FirstName" required="" />
+                              &nbsp;&nbsp;
+                              <input style="padding:5px;" type="text" name="LastName" placeholder="LastName" required="" />
+                          </div><br />
+                          <div class="row">
+                              <input style="padding:5px; width: 385px;" type="text" name="Email" placeholder="Email" required="" />
+                          </div><br />
+                          <div class="row">
+                              <input style="padding:5px; width: 385px;" type="password" name="Password" placeholder="Password" required="" />
+                          </div><br />
+                          <div class="row">
+                              <input type="submit" value="Create An Account" style="padding:5px;color:white;background-color:green;width: 385px;">
+                          </div>
+                          
+                      </form>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>

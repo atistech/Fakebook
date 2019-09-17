@@ -1,6 +1,7 @@
 ﻿using Fakebook.BusinessLogicLayer.Concrete;
 using Fakebook.EntitiesLayer.Entities;
 using Fakebook.PresentationLayer.Areas.Member.ViewModels;
+using Fakebook.PresentationLayer.ViewModels;
 using System;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -80,6 +81,22 @@ namespace Fakebook.PresentationLayer.Controllers
 
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterVM r)
+        {
+            User u = new User();
+            u.ID = new Guid();
+            u.FirstName = r.FirstName;
+            u.LastName = r.LastName;
+            u.Email = r.Email;
+            u.Password = r.Password;
+            u.Role = Role.Member;
+            _userBLL.Add(u);
+            string cookie = "" + u.ID;
+            FormsAuthentication.SetAuthCookie(cookie, true);
+            return RedirectToAction("Home", "Home", new { area = "Member" });
         }
     }
 }
