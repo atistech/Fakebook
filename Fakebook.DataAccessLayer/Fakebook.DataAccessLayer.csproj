@@ -57,9 +57,9 @@
     <Compile Include="Concrete\ProfileImageDAL.cs" />
     <Compile Include="Concrete\UserDAL.cs" />
     <Compile Include="Context\ProjectContext.cs" />
-    <Compile Include="Migrations\201909142142489_September.cs" />
-    <Compile Include="Migrations\201909142142489_September.Designer.cs">
-      <DependentUpon>201909142142489_September.cs</DependentUpon>
+    <Compile Include="Migrations\201909191950440_Last2.cs" />
+    <Compile Include="Migrations\201909191950440_Last2.Designer.cs">
+      <DependentUpon>201909191950440_Last2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,8 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909142142489_September.resx">
-      <DependentUpon>201909142142489_September.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909191950440_Last2.resx">
+      <DependentUpon>201909191950440_Last2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

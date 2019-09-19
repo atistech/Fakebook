@@ -19,17 +19,17 @@ namespace Fakebook.BusinessLogicLayer.Concrete
 
         public List<Post> getAllPostsByUserID(Guid id)
         {
-            List<Post> ls = _postDAL.GetDefault(x => x.User.ID == id);
+            List<Post> ls = _postDAL.GetDefault(x => x.UserID == id);
             foreach(User u in _userDAL.GetByID(id).Users)
             {
-                ls.AddRange(_postDAL.GetDefault(x => x.User.ID == u.ID));
+                ls.AddRange(_postDAL.GetDefault(x => x.UserID == u.ID));
             }
             return ls;
         }
 
         public List<Post> getProfilePostsByUserID(Guid id)
         {
-            return _postDAL.GetDefault(x => x.User.ID == id);
+            return _postDAL.GetDefault(x => x.UserID == id);
         }
 
         public void Update(Post p)

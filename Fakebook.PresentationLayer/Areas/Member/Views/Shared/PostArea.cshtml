@@ -1,80 +1,97 @@
 ﻿@model List<PostVM>
 @foreach (var post in Model)
 {
-    <div id="post" class="bg-light w-100">
-        <div class="container p-3">
-            <div class="row">
-                <div class="col-sm-2 pr-0">
-                    <img class="small_profile" src="@post.OwnerImage">
-                </div>
-                <div class="col-sm-10 pl-0 p-2">
-                    <p class="profile_name font-weight-bold">@post.OwnerName</p>
-                    <p class="post_date">@post.PostDate · <i class="fa fa-globe-americas"></i></p>
-                </div>
+<div id="post" class="bg-light w-100">
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-sm-2 pr-0">
+                <img class="small_profile" src="@post.OwnerImage">
             </div>
-            <div class="row p-2">
-                <div class="col-sm-12">
-                    <p class="post-content-text">
-                        @post.TextContent
-                    </p>
-                    <img class="post_content_image" src="@post.ImageContent">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-lg-3">
-                    <p class="alt-buttons">@post.LikesCount likes</p>
-                </div>
-                <div class="col-lg-3"></div>
-                <div class="col-lg-3"></div>
-                <div class="col-lg-3">
-                    <p class="alt-buttons">@post.CommentsCount comments</p>
-                </div>
-            </div>
-            <div class="row p-2 text-center deneme">
-                <div class="col-sm-4 col-lg-4">
-                    @{
-                        if (post.UserLikeStatus)
-                        {
-                            <button class="alt-buttons like w-100" style="border: none;background: none;outline:0px !important;">
-                                <i class="fa fa-thumbs-up" id="like-icon" style="color: blue;"></i>
-                                <span id="like-text" style="color: blue;">Liked</span>
-                            </button>
-                        }
-                        else
-                        {
-                            <button class="alt-buttons like w-100" style="border: none;background: none;outline:0px !important;">
-                                <i class="fa fa-thumbs-up" id="like-icon"></i>
-                                <span id="like-text">Like</span>
-                                <p id="@post.PostID" style="display: none;"></p>
-                            </button>
-                        }}
-                </div>
-                <div class="col-sm-4 col-lg-4">
-                    <button class="alt-buttons commentClick w-100" style="border: none;background: none;outline:0px !important;">
-                        <i class="fa fa-comment"></i> Comment
-                    </button>
-                </div>
-                <div class="col-sm-4 col-lg-4">
-                    <button class="alt-buttons w-100" data-toggle="modal" data-target="#@post.TextContent.Replace(' ', 'x')" style="border: none;background: none;outline:0px !important;">
-                        <i class="fa fa-share-square"></i> Share
-                    </button>
-                </div>
-            </div>
-            <div class="row p-1 write-comment" style="display: none;">
-                <div class="col-sm-2 pr-0">
-                    <img class="comment_profile" src="@post.OwnerImage">
-                </div>
-                <div class="col-sm-8 pl-0 p-2">
-                    <input class="form-control comment" type="text" placeholder="Write your comment...">
-                </div>
-                <div class="col-sm-2 p-2">
-                    <button type="button" class="btn btn-primary">
-                        Send
-                    </button>
-                </div>
+            <div class="col-sm-10 pl-0 p-2">
+                <p class="profile_name font-weight-bold">@post.OwnerName</p>
+                <p class="post_date">@post.PostDate · <i class="fa fa-globe-americas"></i></p>
             </div>
         </div>
-    </div>
+        <div class="row p-2">
+            <div class="col-sm-12">
+                <p class="post-content-text">
+                    @post.TextContent
+                </p>
+                <img class="post_content_image" src="@post.ImageContent">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-lg-3">
+                <p class="alt-buttons">@post.LikesCount likes</p>
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
+                <p class="alt-buttons">@post.CommentsCount comments</p>
+            </div>
+        </div>
+        <div class="row p-2 text-center deneme">
+            <div class="col-sm-4 col-lg-4">
+                @{
+                    if (post.UserLikeStatus)
+                    {
+                        <button class="alt-buttons like w-100" style="border: none;background: none;outline:0px !important;">
+                            <i class="fa fa-thumbs-up" id="like-icon" style="color: blue;"></i>
+                            <span id="like-text" style="color: blue;">Liked</span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="alt-buttons like w-100" style="border: none;background: none;outline:0px !important;">
+                            <i class="fa fa-thumbs-up" id="like-icon"></i>
+                            <span id="like-text">Like</span>
+                            <p id="@post.PostID" style="display: none;"></p>
+                        </button>
+                    }}
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <button class="alt-buttons commentClick w-100" style="border: none;background: none;outline:0px !important;">
+                    <i class="fa fa-comment"></i> Comment
+                </button><br /><br />
+                <button class="alt-buttons w-100 see-all" style="border: none;background: none;outline:0px !important;">
+                    <p>See All Comments</p>
+                </button>
+            </div>
+            <div class="col-sm-4 col-lg-4">
+                <button class="alt-buttons w-100" data-toggle="modal" data-target="#@post.TextContent.Replace(' ', 'x')" style="border: none;background: none;outline:0px !important;">
+                    <i class="fa fa-share-square"></i> Share
+                </button>
+            </div>
+        </div>
+        @foreach (UserCommentVM c in post.Comments)
+        {
+            <div class="row p-1 comments" style="display: none;">
+                <div class="col-sm-3 pr-0">
+                    <img class="comment_profile" src="@c.UserProfile">
+                    <p>@c.FullName</p>
+                </div>
+                <div class="col-sm-9 pl-0 p-2">
+                    <input class="form-control comment" type="text" name="TextContent" value="@c.CommentText" disabled>
+                </div>
+            </div>
+        }
+            <form action="@Url.Action("AddComment","Home")" method="post">
+                <div class="row p-1 write-comment" style="display: none;">
+                    <div class="col-sm-2 pr-0">
+                        <img class="comment_profile" src="@post.OwnerImage">
+                    </div>
+                    <div class="col-sm-8 pl-0 p-2">
+                        <input class="form-control comment" type="text" name="TextContent" placeholder="Write your comment..." required="">
+                        <input class="fade" type="text" name="PostID" value="@post.PostID" />
+                    </div>
+                    <div class="col-sm-2 p-2">
+                        <input type="submit" value="Send" class="btn btn-primary">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+</div>
     <!-- Modal -->
     <div class="modal fade" id="@post.TextContent.Replace(' ', 'x')" tabindex="-1" role="dialog" aria-labelledby="@post.TextContent.Replace(' ', 'x')" aria-hidden="true">
         <div class="modal-dialog" role="document">

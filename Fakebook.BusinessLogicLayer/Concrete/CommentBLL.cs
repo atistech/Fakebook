@@ -15,6 +15,14 @@ namespace Fakebook.BusinessLogicLayer.Concrete
             _commentDAL = new CommentDAL();
         }
 
+        public List<Comment> GetCommentsByPostID(Guid id)
+        {
+            if(_commentDAL.GetDefault(x => x.PostID == id)!=null)
+                return _commentDAL.GetDefault(x => x.PostID == id);
+            else
+                return null;
+        }
+
         public void Add(Comment t)
         {
             _commentDAL.Add(t);

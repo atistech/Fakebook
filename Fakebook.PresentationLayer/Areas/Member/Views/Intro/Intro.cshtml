@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Intro";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutProfile.cshtml";
+}
+@model IntroVM
+    <div class="container-fluid">
+        <div class="row p-3">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <form action="@Url.Action("SaveChanges","Intro")" method="post">
+                    <div class="row">
+                        <input style="padding:5px;" type="text" name="FirstName" value="@Model.FirstName" required="" />
+                        &nbsp;&nbsp;
+                        <input style="padding:5px;" type="text" name="LastName" value="@Model.LastName" required="" />
+                    </div><br />
+                    <div class="row">
+                        <input style="padding:5px; width: 385px;" type="text" name="Email" value="@Model.Email" required="" />
+                    </div><br />
+                    <div class="row">
+                        <input style="padding:5px; width: 385px;" type="password" name="Password" value="@Model.Password" id="showPassword" required="" />
+                    </div><br />
+                    <div class="row">
+                        <input type="submit" value="Save Changes" style="padding:5px;color:white;background-color:green;width: 385px;">
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        
+    </div>
+
+

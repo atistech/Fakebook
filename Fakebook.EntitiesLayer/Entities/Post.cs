@@ -14,7 +14,7 @@ namespace Fakebook.EntitiesLayer.Entities
         public DateTime PostDate { get; set; }
         public string TextContent { get; set; }
         public virtual Image ContentImage { get; set; }
-        public virtual User User { get; set; }
+        public Guid? UserID { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
     }

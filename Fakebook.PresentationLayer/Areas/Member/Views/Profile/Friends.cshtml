@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Friends";
+    Layout = "~/Areas/Member/Views/Shared/_LayoutProfile.cshtml";
+}
+@model List<FriendsVM>
+<div class="container-fluid">
+    <div class="row p-5">
+        @foreach (var friend in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="@friend.ProfilePhoto" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@friend.FullName</h5>
+                    <p class="card-text">@friend.Email </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

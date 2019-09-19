@@ -18,7 +18,7 @@ namespace Fakebook.BusinessLogicLayer.Concrete
 
         public int LikesCount(Guid id)
         {
-            return _likeDAL.GetDefault(x => x.ItemID == id
+            return _likeDAL.GetDefault(x => x.PostID == id
 && x.Status != Status.Deleted).Count;
         }
 
@@ -26,20 +26,20 @@ namespace Fakebook.BusinessLogicLayer.Concrete
         {
             Like like = new Like();
             like.ID = Guid.NewGuid();
-            like.OwnerID = OwnerId;
-            like.ItemID = ItemId;
+            like.UserID = OwnerId;
+            like.PostID = ItemId;
             _likeDAL.Add(like);
         }
 
         public void Remove(Guid ItemId)
         {
-            _likeDAL.Remove(_likeDAL.GetByDefault(x => x.ItemID == ItemId));
+            _likeDAL.Remove(_likeDAL.GetByDefault(x => x.PostID == ItemId));
         }
 
         public bool UserLikeStatus(Guid UserId, Guid ItemId)
         {
-            if (_likeDAL.GetByDefault(x => x.ItemID == ItemId
-                 && x.OwnerID == UserId)!=null)
+            if (_likeDAL.GetByDefault(x => x.PostID == ItemId
+                 && x.UserID == UserId)!=null)
                 return true;
             else
                 return false;

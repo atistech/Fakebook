@@ -18,9 +18,33 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
         ProfileImageBLL profileImageBLL = new ProfileImageBLL();
         // GET: Member/Profile
 
-        public ActionResult Profile()
+        public new ActionResult Profile()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Friends()
+        {
+            User u = userBLL.Get(new Guid(HttpContext.User.Identity.Name));
+            List<FriendsVM> ls = new List<FriendsVM>();
+            foreach(var item in u.Users)
+            {
+                ls.Add(new FriendsVM
+                {
+                    FullName = item.FirstName + " " + u.LastName,
+                    Email = item.Email,
+                    ProfilePhoto = profileImageBLL.GetProfileImageByUserID(item.ID).Image.Base64
+                });
+            }
+            return View(ls);
+        }
+
+        [HttpGet]
+        public ActionResult Photos()
+        {
+            User u = userBLL.Get(new Guid(HttpContext.User.Identity.Name));
+            return View(u.Images);
         }
         
         [HttpGet]
@@ -30,10 +54,11 @@ namespace Fakebook.PresentationLayer.Areas.Member.Controllers
             List<Post> ls = postBLL.getProfilePostsByUserID(new Guid(HttpContext.User.Identity.Name));
             foreach (Post p in ls)
             {
+                User u = userBLL.GetByID(p.UserID.Value);
                 PostVM postVM = new PostVM();
                 postVM.PostID = p.ID;
-                postVM.OwnerImage = profileImageBLL.GetProfileImageByUserID(p.User.ID).Image.Base64;
-                postVM.OwnerName = p.User.FirstName + " " + p.User.LastName;
+                postVM.OwnerImage = profileImageBLL.GetProfileImageByUserID(u.ID).Image.Base64;
+                postVM.OwnerName = u.FirstName + " " + u.LastName;
                 postVM.PostDate = p.PostDate;
                 postVM.TextContent = p.TextContent;
                 postVM.ImageContent = p.ContentImage.Base64;

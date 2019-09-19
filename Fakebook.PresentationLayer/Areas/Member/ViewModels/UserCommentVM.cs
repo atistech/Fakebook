@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Fakebook.PresentationLayer.Areas.Member.ViewModels
 {
-    public class CurrentUserVM
+    public class UserCommentVM
     {
+        public Guid CommentID { get; set; }
         public string FullName { get; set; }
-        public string Email { get; set; }
-        public string ProfileImage { get; set; }
-        public string CoverImage { get; set; }
+        public string UserProfile { get; set; }
+        public string CommentText { get; set; }
     }
 }

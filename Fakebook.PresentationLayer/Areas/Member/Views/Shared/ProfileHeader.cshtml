@@ -2,28 +2,36 @@
     <div class="row p-3" id="cover-image" style="height: 200px;">
         <br />
         <div class="col-sm-12 col-lg-3">
-            <img id="profile-image" height="100" width="100" /><span id="current-user"></span>
+            <img id="profile-image" height="100" width="100" />
         </div>
     </div>
     <div class="row p-2">
         <div class="col-sm-12 col-lg-3">
             <button class="alt-buttons w-100" style="border: none;background: none;outline:0px !important;">
-                <i class="fa fa-tachometer"></i> Timeline
+                <a class="nav-link active" href="@Url.Action("Profile","Profile",new { area="Member"})">
+                    <i class="fa fa-tachometer"></i>&nbsp;&nbsp;Timeline
+                </a>
             </button>
         </div>
         <div class="col-sm-12 col-lg-3">
             <button class="alt-buttons w-100" style="border: none;background: none;outline:0px !important;">
-                <i class="fa fa-info-circle"></i> Intro
+                <a class="nav-link active" href="@Url.Action("Intro","Intro",new { area="Member"})">
+                    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;Intro
+                </a>
             </button>
         </div>
         <div class="col-sm-12 col-lg-3">
             <button class="alt-buttons w-100" style="border: none;background: none;outline:0px !important;">
-                <i class="fa fa-users"></i> Friends
+                <a class="nav-link active" href="@Url.Action("Friends","Profile",new { area="Member"})">
+                    <i class="fa fa-users"></i>&nbsp;&nbsp;Friends
+                </a> 
             </button>
         </div>
         <div class="col-sm-12 col-lg-3">
             <button class="alt-buttons w-100" style="border: none;background: none;outline:0px !important;">
-                <i class="fa fa-image"></i> Photos
+                <a class="nav-link active" href="@Url.Action("Photos","Profile",new { area="Member"})">
+                    <i class="fa fa-image"></i>&nbsp;&nbsp;Photos
+                </a>
             </button>
         </div>
     </div>

@@ -17,17 +17,7 @@
                 <div class="row">
                     @Html.Partial("ProfileHeader")
                     <br />
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-5">
-                            <div id="post" class="bg-light p-3">
-                                <i class="fa fa-info-circle"></i> Intro
-                            </div>
-                            @Html.Partial("Photos")
-                        </div>
-                        <div class="col-sm-12 col-lg-7">
-                            @RenderBody()
-                        </div>
-                    </div>
+                    @RenderBody()
                 </div>
             </div>
             <div class="col-sm-12 col-lg-2"></div>
@@ -37,35 +27,14 @@
     <script>
         $(document).ready(function () {
             var url1 = '@Url.Action("GetCurrentUser", "Home")';
-            var url2 = '@Url.Action("GetPhotos", "Profile")';
             $.get(url1, function (data) {
                 var json = JSON.parse(data);
                 $("#current-user").html(json.FullName);
+                $("#current-user-email").html(json.Email);
                 $("#profile-image").attr("src", json.ProfileImage);
                 $("#cover-image").css("background-image", "url('"+json.CoverImage+"'");
             });
-            $.get(url2, function (data) {
-                var json = JSON.parse(data);
-                var count = 0;
-                json.forEach(function (item) {
-                    if (count == 0) {
-                        var img = $('<img />').attr({
-                            'src': item.Base64,
-                            'width': 100,
-                            'width': 100
-                        }).appendTo($('.photos')[0]);
-                        count++;
-                    }
-                    else if (count == 1) {
-                        var img = $('<img />').attr({
-                            'src': item.Base64,
-                            'width': 100,
-                            'width': 100
-                        }).appendTo($('.photos')[1]);
-                        count = 0;
-                    }
-                });
-            });
+            
         });
     </script>
     @RenderSection("scripts", false)

@@ -5,7 +5,7 @@ namespace Fakebook.EntitiesLayer.Entities
 {
     public class Like : CoreEntity
     {
-        public Guid? OwnerID { get; set; }
-        public Guid? ItemID { get; set; }
+        public Guid? UserID { get; set; }
+        public Guid? PostID { get; set; }
     }
 }

@@ -2,13 +2,64 @@
     ViewBag.Title = "Profile";
     Layout = "~/Areas/Member/Views/Shared/_LayoutProfile.cshtml";
 }
-@Html.Partial("PostWrite")
-@{Html.RenderAction("GetPosts", "Profile");}
+<div class="row">
+    <div class="col-sm-12 col-lg-5">
+        <div id="post" class="bg-light p-3">
+            <div class="row p-2">
+                <i class="fa fa-info-circle"></i>&nbsp;Intro
+            </div>
+            <div class="row pl-4">
+                <span id="current-user"></span>
+            </div>
+            <div class="row pl-4">
+                <i class="fa fa-address-book"></i>&nbsp;<span id="current-user-email"></span>
+            </div>
+        </div>
+        <div id="post" class="bg-light p-3">
+            <i class="fa fa-image"></i> Photos<br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 photos p-2"></div>
+                    <div class="col-sm-6 photos p-2"></div>
+                </div>
+            </div><hr />
+            <button class="alt-buttons w-100" style="border: none;background: none;outline:0px !important;">
+                <a href="#">See All Photos V</a>
+            </button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-7">
+        @Html.Partial("PostWrite")
+        @{Html.RenderAction("GetPosts", "Profile");}
+    </div>
+</div>
 <audio id="carteSoudCtrl">
     <source src="~/Sounds/like.mp3" type="audio/mpeg">
 </audio>
 @section scripts {
     <script>
+        $.get('@Url.Action("GetPhotos", "Profile")', function (data) {
+                var json = JSON.parse(data);
+                var count = 0;
+                json.forEach(function (item) {
+                    if (count == 0) {
+                        var img = $('<img />').attr({
+                            'src': item.Base64,
+                            'width': 100,
+                            'width': 100
+                        }).appendTo($('.photos')[0]);
+                        count++;
+                    }
+                    else if (count == 1) {
+                        var img = $('<img />').attr({
+                            'src': item.Base64,
+                            'width': 100,
+                            'width': 100
+                        }).appendTo($('.photos')[1]);
+                        count = 0;
+                    }
+                });
+            });
         $(".alt-buttons").hover(function () {
             $(this).css("cursor", "pointer");
         });

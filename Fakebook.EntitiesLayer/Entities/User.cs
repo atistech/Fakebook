@@ -25,5 +25,6 @@ namespace Fakebook.EntitiesLayer.Entities
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Image> Images { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

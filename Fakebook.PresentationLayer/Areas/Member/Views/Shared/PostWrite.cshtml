@@ -1,30 +1,22 @@
 ﻿<div id="post" class="bg-light w-100">
     <div class="container p-3">
-        <div class="row p-1">
-            <div class="pl-0 p-2 w-100">
-                <textarea class="form-control comment" placeholder="What's on your mind?"></textarea>
+        <form action="@Url.Action("AddPost","Home")" method="post">
+            <div class="row p-1">
+                <div class="pl-0 p-2 w-100">
+                    <textarea name="TextContent" class="form-control comment" maxlength="150" placeholder="What's on your mind?" style="resize: none;" required=""></textarea>
+                </div>
             </div>
-        </div>
-        <div class="row p-2 deneme">
-            <div class="col-sm-6 col-lg-6">
-                <button type="button" class="btn">
-                    <i class="fa fa-plus"></i> Add Image
-                </button>
+            <div class="row p-2 deneme">
+                <div class="col-sm-6 col-lg-6">
+                    <button type="button" class="btn">
+                        <input type="file" name="ImageContent" required=""/>
+                    </button>
+                </div>
+                <div class="col-sm-4 col-lg-4"></div>
+                <div class="col-sm-2 col-lg-2 pl-0">
+                    <input type="submit" value="Post" class="btn btn-primary">
+                </div>
             </div>
-            <div class="col-sm-4 col-lg-4">
-                <p class="alt-buttons">
-                    <select name="Role" class="form-control">
-                        <option value="None">Friends</option>
-                        <option value="Admin">Public</option>
-                        <option value="Member">Only Me</option>
-                    </select>
-                </p>
-            </div>
-            <div class="col-sm-2 col-lg-2 pl-0">
-                <button type="button" class="btn btn-primary">
-                    Post
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
