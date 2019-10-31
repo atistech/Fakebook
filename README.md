@@ -1,7 +1,7 @@
 # Fakebook
 Social Media App
 
-Enterprise Architecture
+Enterprise Architecture, 
 C# Programming Language, 
 SQL Server Express, 
 Entity Framework, 
